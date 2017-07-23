@@ -26,6 +26,7 @@ My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
+* video.mp4 containing the video of the car driving it-self on track-one 
 * README.md summarizing the work and results
 
 ##### To run in autonomous mode, simply run the server as following:
@@ -59,7 +60,7 @@ The model was tested by running it through the simulator and ensuring that the v
 
 ##### Model parameter tuning
 
-The model used an adam optimizer with a learning rate of 0.0001.
+The model used an Adam optimizer with a learning rate of 0.0001.
 
 ##### Final Model Architecture
 
@@ -101,9 +102,9 @@ The final step was to run the simulator to see how well the car was driving arou
 
 Happy with my results so far, I have decided to test the same track with a higher speed (going from 9 mph to 30 mph), it didn't work as well. Now, I could blame it on latency, the drive.py is running on a server in the US, while the simulator is using port-forwarding to connect to it, from across the ocean. But I kept trying to improve it (also it was terrible on track-two).
 
-Frustrating, I have discovered that better test and validation score don't necessarily mean better driving!
+Frustratingly, I have discovered that better test and validation score don't necessarily mean better driving!
 
-After a lot of thought, I have decided to do two things, one, record my self driving track-two and use the extra data for a larger training set. Two, change the model so the output has 5 values instead of 1, and they basically represent the steering angle in the following samples. 
+After a lot of thought, I have decided to do two things. One, record my self driving track-two and use the extra data for a larger training set. Two, change the model so the output has 5 values instead of 1, where they represent the steering angles in the following samples. 
 
 ##### Next 5 steering angles
 
