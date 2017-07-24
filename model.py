@@ -27,13 +27,11 @@ def get_data(data_dir = "./data/", skip_header = False, split=0.8):
     # params
     log_path = data_dir + "driving_log.csv"
     
-    def load_image(name):
-        filename = name.split('/')[-1]
-        current_path = data_dir + "IMG/" + filename
-        return io.imread(current_path)
+    def get_path(name):
+        return data_dir + "IMG/" + (name.split('/')[-1])
             
-    rows = np.array([(load_image(row[0]), load_image(row[1]), load_image(row[2]), float(row[3])) for row in read_data(log_path, skip_header)])
-    S = look_ahead([row[3] for row in rows])
+    rows = np.array([(get_path(row[0]), get_path(row[1]), get_path(row[2]), row[3]) for row in read_data(log_path, skip_header)])
+    S = look_ahead([float(row[3]) for row in rows])
     
     train_len = int(split * len(S))
     perms = np.random.permutation(len(S))
@@ -63,7 +61,7 @@ def generate_data(data, batch_size = 128, correction = 0.21, train = True):
         steerings = [steering_center, steering_left, steering_right]
 
         for p in range(3):
-            image = row[p]
+            image = io.imread(row[p])
             measurement = steerings[p]
             # original image
             images.append(image)
